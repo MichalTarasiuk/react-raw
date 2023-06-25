@@ -1,26 +1,22 @@
 {
   "extends": "@react-raw/tsconfig/base.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "~context/*": ["src/context/*"],
       "~hook/*": ["src/hook/*"],
       "~raw/*": ["src/raw/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "./node_modules/@react-raw/lib/src/types/**/*.d.ts",
-    "package.json",
-    "../raw_lib/src/components/empty_fragment.tsx"
-  ],
-  "exclude": ["node_modules/**(!@react-raw/lib/src/types)", "dist"],
+  "include": ["**/*.ts", "**/*.tsx", "package.json"],
+  "exclude": ["node_modules", "dist"],
   "references": [
     {
-      "path": "../raw_bundler",
+      "path": "../raw_bundler"
+    },
+    {
       "path": "../raw_lib"
     }
   ]

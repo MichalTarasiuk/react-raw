@@ -3,14 +3,11 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": [
-    "**/*.ts",
-    "../../node_modules/@react-raw/lib/src/types/**/*.d.ts"
-  ],
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"],
   "references": [
     {
       "path": "../raw_lib"
     }
-  ],
-  "exclude": ["node_modules/**(!@react-raw/lib/src/types)"]
+  ]
 }

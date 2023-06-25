@@ -5,26 +5,18 @@
   "root": "./src",
   "distDir": "./dist",
   "source": {
-    "hook": "./hook/hook_alias.ts",
-    "context": "./context/context_alias.ts"
+    "src": "./src_alias.ts"
   },
   "exports": {
-    "./hook": {
-      "import": "./dist/hook/hook.mjs",
-      "require": "./dist/hook/hook.cjs"
-    },
-    "./context": {
-      "import": "./dist/context/context.mjs",
-      "require": "./dist/context/context.cjs"
+    "./src": {
+      "import": "./dist/src/src.mjs",
+      "require": "./dist/src/src.cjs"
     }
   },
   "typesVersions": {
     "*": {
-      "hook": [
-        "./dist/hook/hook.d.ts"
-      ],
-      "context": [
-        "./dist/context/context.d.ts"
+      "src": [
+        "./dist/src/src.d.ts"
       ]
     }
   },

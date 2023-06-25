@@ -1,17 +1,17 @@
 {
   "extends": "@react-raw/tsconfig/base.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "baseUrl": ".",
-    "jsx": "react-jsx",
     "paths": {
       "~components/*": ["src/components/*"],
       "~composables/*": ["src/composables/*"],
       "~node/*": ["src/node/*"],
       "~utils/*": ["src/utils/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["**/*.ts", "**/*.tsx", "package.json", "tsconfig.json"],
+  "include": ["**/*.ts", "**/*.tsx", "package.json"],
   "exclude": ["node_modules", "dist"],
   "references": [
     {
