@@ -15,9 +15,9 @@ export const generateDtsBundle = (
   const outputs = dtsOptionsArray.map(({output}) => output);
 
   const codes = generateDtsBundleImpl(
-    inputs.map((input) => {
+    inputs.map((filePath) => {
       return {
-        filePath: input,
+        filePath,
         output: {
           sortNodes: true,
           noBanner: true,

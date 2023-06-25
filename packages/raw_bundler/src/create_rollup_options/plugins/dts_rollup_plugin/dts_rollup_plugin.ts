@@ -8,7 +8,7 @@ import type {PackageJSON} from '../../helpers/helpers_alias';
 import type {InputPluginOption} from 'rollup';
 
 export const dtsRollupPlugin = (
-  root: PackageJSON['root'],
+  root: Exclude<PackageJSON['root'], null>,
   typeVersions: PackageJSON['typeVersions'],
   tsconfigJSONPath: string
 ): InputPluginOption => {
@@ -21,11 +21,12 @@ export const dtsRollupPlugin = (
         return;
       }
 
-      const dtsOptionsArray = getDtsOptionsArray(input, typeVersions, dtsState);
+      const dtsOptionsArray = getDtsOptionsArray(input, typeVersions);
+      const newDtsOptionsArray = dtsOptionsArray.filter(
+        (dtsOptions) => !dtsState.has(dtsOptions.input)
+      );
 
-      dtsOptionsArray.forEach((dtsOptions) => {
-        dtsState.set(dtsOptions);
-      });
+      newDtsOptionsArray.forEach((dtsOptions) => dtsState.set(dtsOptions));
 
       generateDtsBundle(tsconfigJSONPath, dtsOptionsArray);
     },

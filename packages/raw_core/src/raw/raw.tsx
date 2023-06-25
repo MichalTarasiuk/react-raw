@@ -43,14 +43,14 @@ export const raw = (rawString: string, resolvers: Resolvers) => {
     },
   };
 
-  const rawCache = mapGetLazy(
+  const rawCacheValue = mapGetLazy(
     rawCacheMap,
     resolvers,
     () => new Map<string, ReturnType<typeof htmlReactParser>>()
   );
 
-  const reactJSXElement = mapPutNewLazy(rawCache, rawString, (property) =>
-    htmlReactParser(property, htmlReactParserOptions)
+  const reactJSXElement = mapPutNewLazy(rawCacheValue, rawString, (rawString) =>
+    htmlReactParser(rawString, htmlReactParserOptions)
   );
 
   return reactJSXElement;

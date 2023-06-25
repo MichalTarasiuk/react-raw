@@ -29,13 +29,12 @@ export const createRollupOptions = (
   jsonObject: JsonObject,
   {isProduction, tsconfigJSONPath = DEFAULT_TSCONFIG_JSON_PATH}: Options
 ) => {
-  const packageJSON = readPackageJSON(jsonObject);
+  const {root, distDir, source, typeVersions} = readPackageJSON(jsonObject);
 
-  if (!packageJSON) {
+  if (!root || !distDir) {
     throw Error('`packageJSON should contain `root` and `distDir` props');
   }
 
-  const {root, distDir, source, typeVersions} = packageJSON;
   const tsConfig = getTsconfig(tsconfigJSONPath)?.config ?? {};
 
   const input: RollupOptions['input'] = Object.fromEntries(
