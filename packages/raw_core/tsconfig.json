@@ -14,7 +14,8 @@
     "**/*.ts",
     "**/*.tsx",
     "./node_modules/@react-raw/lib/src/types/**/*.d.ts",
-    "package.json"
+    "package.json",
+    "../raw_lib/src/components/empty_fragment.tsx"
   ],
   "exclude": ["node_modules/**(!@react-raw/lib/src/types)", "dist"],
   "references": [

@@ -1,5 +1,4 @@
-import {createEventHub} from '@react-raw/lib/source';
-import {blockThread, unlockThread} from '@react-raw/lib/source/node';
+import {createEventHub, blockThread, unlockThread} from '@react-raw/lib/source';
 
 import {graph} from './inputs/inputs_alias';
 import {runDev} from './run_dev/run_dev';

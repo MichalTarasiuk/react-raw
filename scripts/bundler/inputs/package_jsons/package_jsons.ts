@@ -1,5 +1,8 @@
-import {isJSONObject} from '@react-raw/lib/source';
-import {getDirectories, readJSONFile} from '@react-raw/lib/source/node';
+import {
+  isJSONObject,
+  getDirectories,
+  readJSONFile,
+} from '@react-raw/lib/source';
 import {join} from 'node:path';
 
 import {isPackageJSONFile} from './is_package_json';

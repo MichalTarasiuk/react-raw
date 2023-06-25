@@ -1,11 +1,11 @@
 /* eslint-disable functional/prefer-readonly-type */
+import {EmptyFragment} from '@react-raw/lib/components';
 import {mapGetLazy, mapPutNewLazy} from '@react-raw/lib/utils';
 import htmlReactParser, {
   attributesToProps,
   domToReact,
 } from 'html-react-parser';
 
-import {EmptyFragment} from './empty_fragment';
 import {findResolver} from './find_resolver';
 import {isElement} from './is_element';
 

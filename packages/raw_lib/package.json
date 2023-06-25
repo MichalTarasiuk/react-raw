@@ -6,6 +6,7 @@
   "distDir": "./dist",
   "source": {
     "composables": "./composables/composables_alias.ts",
+    "components": "./components/components_alias.ts",
     "node": "./node/node_alias.ts",
     "utils": "./utils/utils_alias.ts"
   },
@@ -13,8 +14,9 @@
     "./source": {
       "default": "./src/src_alias.ts"
     },
-    "./source/node": {
-      "default": "./src/node/node_alias.ts"
+    "./components": {
+      "import": "./dist/components/components.mjs",
+      "require": "./dist/components/components.cjs"
     },
     "./composables": {
       "import": "./dist/composables/composables.mjs",
@@ -34,11 +36,11 @@
       "source": [
         "./src/src_alias.ts"
       ],
-      "source/node": [
-        "./src/node/node_alias.ts"
-      ],
       "composables": [
         "./dist/composables/composables.d.ts"
+      ],
+      "components": [
+        "./dist/components/components.d.ts"
       ],
       "node": [
         "./dist/node/node.d.ts"

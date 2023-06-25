@@ -1,4 +1,4 @@
-import {relativeToAbsolute} from '@react-raw/lib/source/node';
+import {relativeToAbsolute} from '@react-raw/lib/source';
 import {dirname} from 'node:path';
 
 import {isRootFile} from './is_root_file';
