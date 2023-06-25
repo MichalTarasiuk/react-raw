@@ -1,0 +1,22 @@
+{
+  "extends": "@react-raw/tsconfig/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "~composables/*": ["src/composables/*"],
+      "~node/*": ["src/node/*"],
+      "~utils/*": ["src/utils/*"]
+    }
+  },
+  "include": ["**/*.ts", "package.json", "tsconfig.json"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    {
+      "path": "../raw_bundler"
+    }
+  ],
+  "ts-node": {
+    "files": true
+  }
+}

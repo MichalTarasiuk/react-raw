@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# typescript
+*.tsbuildinfo
+
+# misc
+.DS_Store
+*.pem
+
+# rollup
+.rollup.cache
+dist
+
+# turbo
+.turbo

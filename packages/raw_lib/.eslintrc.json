@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "./node_modules/@react-raw/linter/core.json",
+    "./node_modules/@react-raw/linter/bundler.json"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["rollup.config.js"]
+}

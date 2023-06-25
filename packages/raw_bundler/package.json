@@ -1,0 +1,28 @@
+{
+  "name": "@react-raw/bundler",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "src/src_alias.ts",
+  "scripts": {
+    "format": "prettier --ignore-path ../../.prettierignore --write .",
+    "typecheck": "tsc-files --noEmit",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.1",
+    "@rollup/plugin-typescript": "^11.1.1",
+    "dts-bundle-generator": "^8.0.1",
+    "get-tsconfig": "^4.6.0",
+    "rollup": "^3.21.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4"
+  },
+  "devDependencies": {
+    "@react-raw/linter": "workspace:*",
+    "@react-raw/tsconfig": "workspace:*",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.1",
+    "type-fest": "^3.12.0"
+  }
+}

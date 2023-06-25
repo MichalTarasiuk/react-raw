@@ -1,0 +1,60 @@
+{
+  "name": "@react-raw/core",
+  "version": "1.0.0",
+  "license": "ISC",
+  "root": "./src",
+  "distDir": "./dist",
+  "source": {
+    "hook": "./hook/hook_alias.ts",
+    "context": "./context/context_alias.ts"
+  },
+  "exports": {
+    "./hook": {
+      "import": "./dist/hook/hook.mjs",
+      "require": "./dist/hook/hook.cjs"
+    },
+    "./context": {
+      "import": "./dist/context/context.mjs",
+      "require": "./dist/context/context.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "hook": [
+        "./dist/hook/hook.d.ts"
+      ],
+      "context": [
+        "./dist/context/context.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "rollup --config rollup.config.js --watch",
+    "build": "rollup --config rollup.config.js",
+    "clean": "rimraf ./dist",
+    "format": "prettier --ignore-path ../../.prettierignore --write .",
+    "typecheck": "tsc-files --noEmit",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "@react-raw/lib": "workspace:*",
+    "domelementtype": "^2.3.0",
+    "type-fest": "^3.12.0"
+  },
+  "devDependencies": {
+    "@react-raw/bundler": "workspace:*",
+    "@react-raw/linter": "workspace:*",
+    "@react-raw/tsconfig": "workspace:*",
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "html-react-parser": "^3.0.15",
+    "moize": "^6.1.6",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "html-react-parser": ">= 3.0.0",
+    "moize": ">= 6.0.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  }
+}

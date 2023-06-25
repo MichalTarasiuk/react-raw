@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+pnpm-lock.yaml
+
+# git
+.gitignore
+.gitkeep
+
+# husky
+/.husky
+
+# prettier
+.prettierignore
+
+# rollup
+dist
+.rollup.cache
+
+# pnpm
+.npmrc
+

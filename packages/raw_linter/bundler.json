@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "parser": "@typescript-eslint/parser",
+  "env": {"es6": true},
+  "plugins": ["import"],
+  "ignorePatterns": ["dist"],
+  "overrides": [
+    {
+      "files": ["rollup.config.ts"],
+      "rules": {
+        "import/no-default-export": "off",
+        "@typescript-eslint/no-unsafe-call": "off"
+      }
+    }
+  ]
+}

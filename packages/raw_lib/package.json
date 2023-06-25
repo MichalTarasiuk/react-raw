@@ -1,0 +1,75 @@
+{
+  "name": "@react-raw/lib",
+  "version": "1.0.0",
+  "license": "ISC",
+  "root": "./src",
+  "distDir": "./dist",
+  "source": {
+    "composables": "./composables/composables_alias.ts",
+    "node": "./node/node_alias.ts",
+    "utils": "./utils/utils_alias.ts"
+  },
+  "exports": {
+    "./source": {
+      "default": "./src/src_alias.ts"
+    },
+    "./source/node": {
+      "default": "./src/node/node_alias.ts"
+    },
+    "./composables": {
+      "import": "./dist/composables/composables.mjs",
+      "require": "./dist/composables/composables.cjs"
+    },
+    "./node": {
+      "import": "./dist/node/node.mjs",
+      "require": "./dist/node/node.cjs"
+    },
+    "./utils": {
+      "import": "./dist/utils/utils.mjs",
+      "require": "./dist/utils/utils.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "source": [
+        "./src/src_alias.ts"
+      ],
+      "source/node": [
+        "./src/node/node_alias.ts"
+      ],
+      "composables": [
+        "./dist/composables/composables.d.ts"
+      ],
+      "node": [
+        "./dist/node/node.d.ts"
+      ],
+      "utils": [
+        "./dist/utils/utils.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "rollup --config rollup.config.js --watch",
+    "build": "rollup --config rollup.config.js",
+    "clean": "rimraf ./dist",
+    "format": "prettier --ignore-path ../../.prettierignore --write .",
+    "typecheck": "tsc-files --noEmit",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "invariant": "^2.2.4",
+    "type-fest": "^3.12.0"
+  },
+  "devDependencies": {
+    "@react-raw/bundler": "workspace:*",
+    "@react-raw/linter": "workspace:*",
+    "@react-raw/tsconfig": "workspace:*",
+    "@types/invariant": "^2.2.35",
+    "@types/react": "^18.0.33",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  }
+}

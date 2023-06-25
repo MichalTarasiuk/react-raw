@@ -1,0 +1,20 @@
+{
+  "extends": "@react-raw/tsconfig/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "./node_modules/@react-raw/lib/src/types/**/*.d.ts",
+    "package.json"
+  ],
+  "exclude": ["node_modules/**(!@react-raw/lib/src/types)", "dist"],
+  "references": [
+    {
+      "path": "../raw_bundler",
+      "path": "../raw_lib"
+    }
+  ]
+}
