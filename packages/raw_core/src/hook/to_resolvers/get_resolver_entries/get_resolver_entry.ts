@@ -23,7 +23,7 @@ const DEFAULT_IS_RESOLVABLE = true;
 
 export const getResolverEntry = <ReactHTMLKey extends ReactHTMLKeyUnion>(
   reactHTMLKey: ReactHTMLKey,
-  {rawResolverName, rawResolver}: RawResolverRecord
+  {rawResolverName, rawResolver: resolve}: RawResolverRecord
 ) => {
   const resolverName = getResolverName(reactHTMLKey, rawResolverName);
 
@@ -39,7 +39,7 @@ export const getResolverEntry = <ReactHTMLKey extends ReactHTMLKeyUnion>(
     resolverName,
     {
       shouldResolve,
-      resolve: rawResolver,
+      resolve,
     },
   ] as const;
 };

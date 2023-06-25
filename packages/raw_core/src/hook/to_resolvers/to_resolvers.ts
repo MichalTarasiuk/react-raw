@@ -7,20 +7,20 @@ import {
 
 import {
   getResolverEntry,
-  getResolversEntries,
-} from './get_resolvers_entries/get_resolvers_entries_alias';
+  getResolverEntries,
+} from './get_resolver_entries/get_resolver_entries_alias';
 
-import type {RawResolvers} from './types';
-import type {Resolvers} from '../../raw/types';
+import type {RawResolvers as UnkownRawResolvers} from './types';
+import type {Resolvers} from '~raw/raw_alias';
 
-const resolversCache = new Map<RawResolvers, Resolvers>();
+const resolversCache = new Map<UnkownRawResolvers, Resolvers>();
 
-export const toResolvers = <NewRawResolvers extends RawResolvers>(
-  newRawResolvers: NewRawResolvers
+export const toResolvers = <RawResolvers extends UnkownRawResolvers>(
+  rawResolvers: RawResolvers
 ) => {
   const resolvers = mapPutNewLazy(
     resolversCache,
-    newRawResolvers,
+    rawResolvers,
     (rawResolvers) => {
       const entriesResolvers = entries(rawResolvers).flatMap(
         ([reactHTMLKey, rawResolver]) => {
@@ -29,7 +29,7 @@ export const toResolvers = <NewRawResolvers extends RawResolvers>(
           }
 
           if (isObject(rawResolver)) {
-            return getResolversEntries(rawResolver, reactHTMLKey);
+            return getResolverEntries(reactHTMLKey, rawResolver);
           }
 
           return [getResolverEntry(reactHTMLKey, {rawResolver})];

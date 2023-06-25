@@ -1,16 +1,16 @@
 import {createSafeContext} from '@react-raw/lib/composables';
 import {useMemo, type ReactNode} from 'react';
 
-import type {Resolvers} from '../raw/raw_alias';
+import type {Resolvers} from '~raw/raw_alias';
 
-type ReactRawContextValue = {
+type RawContextValue = {
   readonly resolvers: Resolvers;
 };
 
 const [RawProviderImpl, useRawContext] =
-  createSafeContext<ReactRawContextValue>('raw');
+  createSafeContext<RawContextValue>('raw');
 
-type ReactRawProviderProps = {
+type RawProviderProps = {
   readonly children: ReactNode;
   readonly resolvers?: Resolvers;
 };
@@ -20,7 +20,7 @@ const initialResolvers: Resolvers = {};
 function RawProvider({
   children,
   resolvers = initialResolvers,
-}: ReactRawProviderProps) {
+}: RawProviderProps) {
   const value = useMemo(
     () => ({
       resolvers,

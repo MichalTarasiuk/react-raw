@@ -2,7 +2,13 @@
   "extends": "@react-raw/tsconfig/base.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "~context/*": ["src/context/*"],
+      "~hook/*": ["src/hook/*"],
+      "~raw/*": ["src/raw/*"]
+    }
   },
   "include": [
     "**/*.ts",

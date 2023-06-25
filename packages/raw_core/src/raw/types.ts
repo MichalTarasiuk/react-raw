@@ -1,8 +1,8 @@
 import type htmlReactParser from 'html-react-parser';
 import type {Element} from 'html-react-parser';
 
-export type Resolvers<ResolverName extends string = string> = Record<
-  ResolverName,
+export type Resolvers = Record<
+  string,
   {
     readonly shouldResolve: (element: Element) => boolean;
     readonly resolve: (

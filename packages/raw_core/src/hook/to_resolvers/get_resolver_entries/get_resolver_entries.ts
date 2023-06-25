@@ -4,20 +4,17 @@ import {getResolverEntry} from './get_resolver_entry';
 
 import type {RawResolver, RawResolverObject, ReactHTMLKeyUnion} from '../types';
 
-export const getResolversEntries = <ReactHtmlKey extends ReactHTMLKeyUnion>(
-  rawResolverObject: RawResolverObject<ReactHtmlKey>,
-  reactHTMLKey: ReactHtmlKey
+export const getResolverEntries = <ReactHtmlKey extends ReactHTMLKeyUnion>(
+  reactHTMLKey: ReactHtmlKey,
+  rawResolverObject: RawResolverObject<ReactHtmlKey>
 ) => {
   return Object.entries(rawResolverObject).map(
     ([rawResolverName, rawResolverImpl]) => {
-      const rawResolver: RawResolver<ReactHtmlKey> = (children, props) => {
-        const resolvedRaw = rawResolverImpl(
+      const rawResolver: RawResolver<ReactHtmlKey> = (children, props) =>
+        rawResolverImpl(
           children,
           deleteAttribute(props, RESOLVE_PROPERTY_NAME)
         );
-
-        return resolvedRaw;
-      };
 
       return getResolverEntry(reactHTMLKey, {rawResolverName, rawResolver});
     }

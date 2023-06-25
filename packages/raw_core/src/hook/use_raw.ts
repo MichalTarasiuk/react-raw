@@ -1,4 +1,3 @@
-import moize from 'moize';
 import {useCallback} from 'react';
 
 import {useRawContext} from '../context/raw_context';
@@ -9,41 +8,10 @@ import {
   type RawResolvers,
 } from './to_resolvers/to_resolvers_alias';
 
-import type {Resolvers} from '../raw/raw_alias';
+export const useRaw = (_hookRawResolvers?: RawResolvers) => {
+  useRawContext();
 
-const mergeResolvers = moize(
-  (resolversA: Resolvers, resolversB: Resolvers) => ({
-    ...resolversA,
-    ...resolversB,
-  })
-);
-
-const mergeRawResolvers = moize(
-  (
-    hookRawResolvers: RawResolvers | undefined,
-    paramRawResolvers: RawResolvers | undefined
-  ) => ({
-    ...hookRawResolvers,
-    ...paramRawResolvers,
-  })
-);
-
-export const useRaw = (hookRawResolvers?: RawResolvers) => {
-  const {resolvers} = useRawContext();
-
-  return useCallback(
-    (rawString: string, paramRawResolvers?: RawResolvers) => {
-      const rawResolvers = mergeRawResolvers(
-        hookRawResolvers,
-        paramRawResolvers
-      );
-
-      return rawImpl(
-        rawString,
-        // @ts-ignore
-        mergeResolvers(resolvers, toResolvers(rawResolvers))
-      );
-    },
-    [hookRawResolvers, resolvers]
-  );
+  return useCallback((rawString: string, _paramRawResolvers?: RawResolvers) => {
+    return rawImpl(rawString, toResolvers({}));
+  }, []);
 };
