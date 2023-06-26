@@ -11,9 +11,7 @@ export const filterObject = <
     value: ValueOf<UnknownObject>
   ) => boolean
 ) => {
-  const entriesObject = entries(unknownObject).filter(([key, value]) =>
-    predicate(key, value)
+  return Object.fromEntries(
+    entries(unknownObject).filter(([key, value]) => predicate(key, value))
   );
-
-  return Object.fromEntries(entriesObject);
 };
