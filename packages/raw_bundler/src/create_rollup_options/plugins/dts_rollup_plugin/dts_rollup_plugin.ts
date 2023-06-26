@@ -8,11 +8,10 @@ import type {PackageJSON} from '../../helpers/helpers_alias';
 import type {InputPluginOption} from 'rollup';
 
 export const dtsRollupPlugin = (
-  root: Exclude<PackageJSON['root'], null>,
-  typeVersions: PackageJSON['typeVersions'],
-  tsconfigJSONPath: string
+  tsconfigJSONPath: string,
+  typeVersions: PackageJSON['typeVersions']
 ): InputPluginOption => {
-  const dtsState = createDtsState(root);
+  const dtsState = createDtsState();
 
   return {
     name: dtsRollupPlugin.name,

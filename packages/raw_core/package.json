@@ -2,10 +2,8 @@
   "name": "@react-raw/core",
   "version": "1.0.0",
   "license": "ISC",
-  "root": "./src",
-  "distDir": "./dist",
   "source": {
-    "src": "./src_alias.ts"
+    "src": "./src/src_alias.ts"
   },
   "exports": {
     "./src": {

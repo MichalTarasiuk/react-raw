@@ -1,8 +1,6 @@
 import {relativeToAbsolute} from '@react-raw/lib/source';
 import {dirname} from 'node:path';
 
-import {isRootFile} from './is_root_file';
-
 import type {DtsOptions} from './generate_dts_bundle';
 
 type Input = string;
@@ -12,7 +10,7 @@ type DtsItem = {
   readonly test: (absoluteInput: string) => boolean;
 };
 
-export const createDtsState = (root: string) => {
+export const createDtsState = () => {
   const dtsState = new Map<Input, DtsItem>();
 
   const get = (changedFile: string) => {
@@ -24,11 +22,6 @@ export const createDtsState = (root: string) => {
       dtsOptions,
       test: (changedFile) => {
         const absoluteInput = relativeToAbsolute(dtsOptions.input);
-
-        if (isRootFile(root, dtsOptions.input)) {
-          return changedFile === absoluteInput;
-        }
-
         const absoluteInputDirname = dirname(absoluteInput);
 
         return changedFile.startsWith(absoluteInputDirname);
