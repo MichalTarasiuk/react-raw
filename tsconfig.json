@@ -17,9 +17,5 @@
       "~bundler/*": ["scripts/bundler/*"]
     }
   },
-  "include": [
-    "scripts/**/*.ts",
-    "./node_modules/@react-raw/lib/src/types/**/*.d.ts"
-  ],
-  "exclude": ["node_modules/**(!@react-raw/lib/src/types)"]
+  "include": ["scripts/**/*.ts"]
 }

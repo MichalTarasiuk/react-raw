@@ -3,14 +3,14 @@ import type {ReactHTML, DetailedHTMLFactory} from 'react';
 
 export type ReactHTMLKey = keyof ReactHTML | Omit<string, keyof ReactHTML>;
 
-type InferProps<ReactHtmlElement> =
-  ReactHtmlElement extends DetailedHTMLFactory<infer Props, HTMLElement>
-    ? Props
-    : never;
-
 type InferRawResolverProps<RawResolverKey extends ReactHTMLKey> =
   RawResolverKey extends keyof ReactHTML
-    ? InferProps<ReactHTML[RawResolverKey]>
+    ? ReactHTML[RawResolverKey] extends DetailedHTMLFactory<
+        infer Props,
+        HTMLElement
+      >
+      ? Props
+      : never
     : Record<string, string>;
 
 export type RawResolver<RawResolverKey extends ReactHTMLKey = ReactHTMLKey> = (

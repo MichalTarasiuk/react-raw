@@ -1,5 +1,5 @@
 /* eslint-disable functional/prefer-readonly-type */
-import {EmptyFragment} from '@react-raw/lib/components';
+import {None} from '@react-raw/lib/components';
 import {mapGetLazy, mapPutNewLazy} from '@react-raw/lib/utils';
 import htmlReactParser, {
   attributesToProps,
@@ -35,7 +35,7 @@ export const raw = (rawString: string, resolvers: Resolvers) => {
           resolver.resolve(
             domToReact(children),
             attributesToProps(attribs)
-          ) ?? <EmptyFragment />
+          ) ?? <None />
         );
       }
 
