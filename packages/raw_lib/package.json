@@ -4,17 +4,12 @@
   "license": "ISC",
   "source": {
     "composables": "./src/composables/composables_alias.ts",
-    "components": "./src/components/components_alias.ts",
     "node": "./src/node/node_alias.ts",
     "utils": "./src/utils/utils_alias.ts"
   },
   "exports": {
     "./source": {
       "default": "./src/src_alias.ts"
-    },
-    "./components": {
-      "import": "./dist/components/components.mjs",
-      "require": "./dist/components/components.cjs"
     },
     "./composables": {
       "import": "./dist/composables/composables.mjs",
@@ -36,9 +31,6 @@
       ],
       "composables": [
         "./dist/composables/composables.d.ts"
-      ],
-      "components": [
-        "./dist/components/components.d.ts"
       ],
       "node": [
         "./dist/node/node.d.ts"

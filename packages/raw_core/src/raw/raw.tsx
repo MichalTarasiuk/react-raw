@@ -1,5 +1,4 @@
 /* eslint-disable functional/prefer-readonly-type */
-import {None} from '@react-raw/lib/components';
 import {mapGetLazy, mapPutNewLazy} from '@react-raw/lib/utils';
 import htmlReactParser, {
   attributesToProps,
@@ -8,6 +7,7 @@ import htmlReactParser, {
 
 import {findResolver} from './find_resolver';
 import {isElement} from './is_element';
+import {None} from './None';
 
 import type {Resolvers} from './types';
 import type {DOMNode, HTMLReactParserOptions} from 'html-react-parser';

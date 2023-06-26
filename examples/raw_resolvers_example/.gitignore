@@ -1,0 +1,17 @@
+# Logs
+logs
+pnpm-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
