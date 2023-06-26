@@ -3,18 +3,26 @@
   "version": "1.0.0",
   "license": "ISC",
   "source": {
-    "src": "./src/src_alias.ts"
+    ".": "./src/src_alias.ts",
+    "next": "./src/next/next_alias.ts"
   },
   "exports": {
-    "./src": {
-      "import": "./dist/src/src.mjs",
-      "require": "./dist/src/src.cjs"
+    ".": {
+      "import": "./dist/root/root.mjs",
+      "require": "./dist/root/root.cjs"
+    },
+    "./next": {
+      "import": "./dist/next/next.mjs",
+      "require": "./dist/next/next.cjs"
     }
   },
   "typesVersions": {
     "*": {
-      "src": [
-        "./dist/src/src.d.ts"
+      ".": [
+        "./dist/root/root.d.ts"
+      ],
+      "next": [
+        "./dist/next/next.d.ts"
       ]
     }
   },

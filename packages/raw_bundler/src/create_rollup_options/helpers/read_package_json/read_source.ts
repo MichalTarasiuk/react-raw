@@ -1,5 +1,7 @@
 import {hasOwn, isObject, isString, objectEvery} from '@react-raw/lib/source';
 
+import {rewriteNames} from './rewrite_names';
+
 import type {JsonObject} from 'type-fest';
 
 export const readSource = (jsonObject: JsonObject) => {
@@ -15,5 +17,5 @@ export const readSource = (jsonObject: JsonObject) => {
     return {};
   }
 
-  return jsonObject.source;
+  return rewriteNames(jsonObject.source);
 };
