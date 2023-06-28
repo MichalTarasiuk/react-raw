@@ -54,6 +54,9 @@ export const createRollupOptions = (
   const rollupOptions: RollupOptions = {
     input: source,
     output,
+    treeshake: {
+      moduleSideEffects: false,
+    },
     plugins: [
       typescriptRollupPlugin({
         compilerOptions: {

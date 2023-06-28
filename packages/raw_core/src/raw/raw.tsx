@@ -25,6 +25,7 @@ export const raw = (rawString: string, resolvers: Resolvers) => {
       if (!isElement(domNode)) {
         return domNode;
       }
+
       const resolver = findResolver(resolverValues, domNode);
 
       if (resolver) {
