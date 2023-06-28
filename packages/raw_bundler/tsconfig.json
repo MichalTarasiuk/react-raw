@@ -4,7 +4,6 @@
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules"],
   "references": [
     {
       "path": "../raw_lib"

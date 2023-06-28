@@ -1,0 +1,10 @@
+{
+  "name": "@react-raw/lint_staged",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "lint_staged.js",
+  "devDependencies": {
+    "@react-raw/linter": "workspace:*",
+    "@react-raw/tsconfig": "workspace:*"
+  }
+}

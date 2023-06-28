@@ -12,7 +12,6 @@
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
   "include": ["**/*.ts", "**/*.tsx", "package.json"],
-  "exclude": ["node_modules", "dist"],
   "references": [
     {
       "path": "../raw_bundler"

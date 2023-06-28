@@ -1,0 +1,4 @@
+{
+  "extends": "@react-raw/tsconfig/base.json",
+  "include": ["**/*.ts"]
+}
