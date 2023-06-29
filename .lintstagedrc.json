@@ -1,4 +1,4 @@
 {
-  "*": ["pnpm run format"],
-  "*.(ts|tsx)": ["pnpm run typecheck"]
+  "*": ["npx turbo run format --filter='[HEAD~0]'"],
+  "*.(ts|tsx)": ["npx turbo run typecheck --filter='[HEAD~0]'"]
 }
