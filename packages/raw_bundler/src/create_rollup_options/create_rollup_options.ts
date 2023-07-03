@@ -22,14 +22,15 @@ import type {InputPluginOption, RollupOptions} from 'rollup';
 import type {JsonObject} from 'type-fest';
 
 type Options = {
-  readonly input: Record<string, string>;
+  readonly source: Record<string, string>;
   readonly isProduction: boolean;
 };
 
 export const createRollupOptions = (
   jsonObject: JsonObject,
-  {input, isProduction}: Options
+  {source, isProduction}: Options
 ) => {
+  const input = rewriteNames(source);
   const output: RollupOptions['output'] = supportedImportNames.map(
     (importName) => {
       const format = importNameToFormat(importName);
@@ -43,8 +44,11 @@ export const createRollupOptions = (
     }
   );
 
+  const tsconfig = getTsconfig(DEFAULT_TSCONFIG_JSON_PATH)?.config;
+  const typesVersions = readTypesVersions(jsonObject);
+
   const rollupOptions: RollupOptions = {
-    input: rewriteNames(input),
+    input,
     output,
     treeshake: {
       moduleSideEffects: false,
@@ -54,16 +58,10 @@ export const createRollupOptions = (
         compilerOptions: {
           composite: false,
         },
-        exclude: [
-          ...(getTsconfig(DEFAULT_TSCONFIG_JSON_PATH)?.config.exclude ?? []),
-          'rollup.config.ts',
-        ],
+        exclude: [...(tsconfig?.exclude ?? []), 'rollup.config.ts'],
         outputToFilesystem: false,
       }),
-      dtsRollupPlugin(
-        DEFAULT_TSCONFIG_JSON_PATH,
-        readTypesVersions(jsonObject)
-      ),
+      dtsRollupPlugin(DEFAULT_TSCONFIG_JSON_PATH, typesVersions),
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       peerDeepsExternalRollupPlugin() as unknown as InputPluginOption,
       nodeResolveRollupPlugin({
