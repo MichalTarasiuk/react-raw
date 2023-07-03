@@ -2,11 +2,6 @@
   "name": "@react-raw/lib",
   "version": "1.0.0",
   "license": "ISC",
-  "source": {
-    "composables": "./src/composables/composables_alias.ts",
-    "node": "./src/node/node_alias.ts",
-    "utils": "./src/utils/utils_alias.ts"
-  },
   "exports": {
     "./source": {
       "default": "./src/src_alias.ts"

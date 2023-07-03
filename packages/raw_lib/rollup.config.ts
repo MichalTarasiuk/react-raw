@@ -1,14 +1,18 @@
 import {createRollupOptions, environment} from '@react-raw/bundler';
 
-import packageJSON from './package.json';
+import packageJson from './package.json';
 
 import type {RollupOptions} from 'rollup';
 
-const lazyRollupOptions = environment((configuration) => {
-  const rollupOptions: RollupOptions = createRollupOptions(
-    packageJSON,
-    configuration
-  );
+const lazyRollupOptions = environment(({isProduction}) => {
+  const rollupOptions: RollupOptions = createRollupOptions(packageJson, {
+    input: {
+      composables: './src/composables/composables_alias.ts',
+      node: './src/node/node_alias.ts',
+      utils: './src/utils/utils_alias.ts',
+    },
+    isProduction,
+  });
 
   return rollupOptions;
 });

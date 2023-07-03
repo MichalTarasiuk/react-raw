@@ -4,14 +4,14 @@ import {join} from 'node:path';
 import {getDeclarationFiles} from './get_declaration_files';
 import {getExportFiles} from './get_export_files/get_export_files';
 
-import type {PackageJSONFile} from '~bundler/inputs/inputs_alias';
+import type {PackageJsonFile} from '~bundler/inputs/inputs_alias';
 
 export const createDistState = (
   packagePath: string,
-  packageJSONFile: PackageJSONFile
+  packageJsonFile: PackageJsonFile
 ) => {
-  const exportFiles = getExportFiles(packageJSONFile);
-  const declarationFiles = getDeclarationFiles(packageJSONFile);
+  const exportFiles = getExportFiles(packageJsonFile);
+  const declarationFiles = getDeclarationFiles(packageJsonFile);
 
   const distState = new Map(
     [...exportFiles, ...declarationFiles].map((file) => [

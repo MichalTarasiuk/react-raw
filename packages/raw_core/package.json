@@ -2,10 +2,6 @@
   "name": "@react-raw/core",
   "version": "1.0.0",
   "license": "ISC",
-  "source": {
-    ".": "./src/src_alias.ts",
-    "next": "./src/next/next_alias.ts"
-  },
   "exports": {
     ".": {
       "import": "./dist/root/root.mjs",

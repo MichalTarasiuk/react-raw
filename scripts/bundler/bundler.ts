@@ -31,12 +31,12 @@ const waitForDependencies = (dependencies: readonly string[]) => {
 
 const bundler = async () => {
   await Promise.all(
-    Object.entries(graph).map(async ([packageJSONName, dependencies]) => {
+    Object.entries(graph).map(async ([packageJsonName, dependencies]) => {
       await waitForDependencies(dependencies);
 
-      await runDev(packageJSONName);
+      await runDev(packageJsonName);
 
-      bundlerEventHub.emit(packageJSONName);
+      bundlerEventHub.emit(packageJsonName);
     })
   );
 

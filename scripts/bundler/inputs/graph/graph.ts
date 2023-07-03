@@ -1,26 +1,26 @@
 import {union} from '@react-raw/lib/source';
 
-import {packageJSONFiles} from '../package_jsons/package_jsons_alias';
+import {packageJsonFiles} from '../package_jsons/package_jsons_alias';
 
-import {bundlerIsSupported} from './bundler_is_supported';
-import {getReactRawDependencies} from './get_react_raw_dependencies';
+import {getRollupReactRawDependencies} from './get_rollup_react_raw_dependencies';
+import {hasDevCommand} from './has_dev_command';
 
 export type Graph = Record<string, readonly string[]>;
 
-export const graph = packageJSONFiles.reduce<Graph>(
-  (collector, packageJSONFile) => {
-    if (!bundlerIsSupported(packageJSONFile)) {
+export const graph = packageJsonFiles.reduce<Graph>(
+  (collector, packageJsonFile) => {
+    if (!hasDevCommand(packageJsonFile)) {
       return collector;
     }
 
-    const {name, dependencies, devDependencies} = packageJSONFile;
+    const {name, dependencies, devDependencies} = packageJsonFile;
 
     const allDependencies = union(
       Object.keys(dependencies ?? {}),
       Object.keys(devDependencies ?? {})
     );
 
-    collector[name] = getReactRawDependencies(allDependencies);
+    collector[name] = getRollupReactRawDependencies(allDependencies);
 
     return collector;
   },

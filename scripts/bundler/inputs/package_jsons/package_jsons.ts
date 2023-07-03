@@ -5,7 +5,7 @@ import {
 } from '@react-raw/lib/source';
 import {join} from 'node:path';
 
-import {isPackageJSONFile} from './is_package_json';
+import {isPackageJsonFile} from './is_package_json';
 
 const PACKAGE_JSON_NAME = 'package.json';
 
@@ -14,17 +14,17 @@ const PACKAGES_PATH = join(process.cwd(), PACKAGES_DIRNAME);
 
 const directories = getDirectories(PACKAGES_PATH);
 
-export const packageJSONs = directories.flatMap((packageName) => {
-  const packageJSONPath = join(PACKAGES_PATH, packageName, PACKAGE_JSON_NAME);
-  const packageJSONFile = readJSONFile(packageJSONPath);
+export const packageJsons = directories.flatMap((packageName) => {
+  const packageJsonPath = join(PACKAGES_PATH, packageName, PACKAGE_JSON_NAME);
+  const packageJsonFile = readJSONFile(packageJsonPath);
 
-  if (!isJSONObject(packageJSONFile) || !isPackageJSONFile(packageJSONFile)) {
+  if (!isJSONObject(packageJsonFile) || !isPackageJsonFile(packageJsonFile)) {
     return [];
   }
 
-  return [{packageJSONPath, packageJSONFile}];
+  return [{packageJsonPath, packageJsonFile}];
 });
 
-export const packageJSONFiles = packageJSONs.map(
-  ({packageJSONFile}) => packageJSONFile
+export const packageJsonFiles = packageJsons.map(
+  ({packageJsonFile}) => packageJsonFile
 );

@@ -1,16 +1,11 @@
-import {readRoot} from '@react-raw/bundler';
-
 import {readExports} from './read_exports';
 
-import type {PackageJSONFile} from '~bundler/inputs/inputs_alias';
+import type {PackageJsonFile} from '~bundler/inputs/inputs_alias';
 
-export const getExportFiles = (packageJSONFile: PackageJSONFile) => {
-  const root = readRoot(packageJSONFile);
-  const exports = readExports(root, packageJSONFile);
+export const getExportFiles = (packageJsonFile: PackageJsonFile) => {
+  const exports = readExports(packageJsonFile);
 
-  return Object.values(exports).flatMap((exportObject) => {
-    const exportFiles = Object.values(exportObject);
-
-    return exportFiles;
-  });
+  return Object.values(exports).flatMap((exportObject) =>
+    Object.values(exportObject)
+  );
 };

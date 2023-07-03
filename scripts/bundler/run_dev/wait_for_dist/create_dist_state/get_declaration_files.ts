@@ -1,15 +1,11 @@
-import {readSource, readTypesVersions} from '@react-raw/bundler';
-import {filterObject} from '@react-raw/lib/source';
+import {readTypesVersions} from '@react-raw/bundler';
 
-import type {PackageJSONFile} from '~bundler/inputs/inputs_alias';
+import type {PackageJsonFile} from '~bundler/inputs/inputs_alias';
 
-export const getDeclarationFiles = (packageJSONFile: PackageJSONFile) => {
-  const source = readSource(packageJSONFile);
+const isDeclarationFile = (file: string) => file.endsWith('.d.ts');
 
-  const typesVersions = readTypesVersions(packageJSONFile);
-  const filteredTypesVersions = filterObject(typesVersions, (key) =>
-    Object.hasOwn(source, key)
-  );
+export const getDeclarationFiles = (packageJsonFile: PackageJsonFile) => {
+  const typesVersions = readTypesVersions(packageJsonFile);
 
-  return Object.values(filteredTypesVersions);
+  return Object.values(typesVersions).filter(isDeclarationFile);
 };

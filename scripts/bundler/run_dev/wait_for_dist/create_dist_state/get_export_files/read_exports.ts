@@ -12,16 +12,11 @@ import {isSupportedImportName} from './is_supported_import_name';
 
 import type {JsonObject} from 'type-fest';
 
-const getExportEntryValue = (
-  root: string,
-  exportValue: Record<PropertyKey, unknown>
-) => {
+const getExportEntryValue = (exportValue: Record<PropertyKey, unknown>) => {
   const exportValueEntries = entries(exportValue).flatMap(
     ([importName, pathname]) => {
-      const isDistFile = isString(pathname) && !pathname.startsWith(root);
-
       if (
-        isDistFile &&
+        isString(pathname) &&
         isString(importName) &&
         isSupportedImportName(importName)
       ) {
@@ -35,7 +30,7 @@ const getExportEntryValue = (
   return fromEntries(exportValueEntries);
 };
 
-export const readExports = (root: string, jsonObject: JsonObject) => {
+export const readExports = (jsonObject: JsonObject) => {
   if (!(hasOwn(jsonObject, 'exports') && isObject(jsonObject.exports))) {
     return {};
   }
@@ -49,7 +44,7 @@ export const readExports = (root: string, jsonObject: JsonObject) => {
       return [
         [
           basename(String(exportKey)),
-          getExportEntryValue(root, exportValue),
+          getExportEntryValue(exportValue),
         ] as const,
       ];
     }

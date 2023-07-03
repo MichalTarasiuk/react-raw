@@ -4,12 +4,12 @@ import {createDtsState} from './create_dts_state';
 import {generateDtsBundle} from './generate_dts_bundle';
 import {getDtsOptionsArray} from './get_dts_options_array/get_dts_options_array';
 
-import type {PackageJSON} from '../../helpers/helpers_alias';
+import type {readTypesVersions} from '../../helpers/helpers_alias';
 import type {InputPluginOption} from 'rollup';
 
 export const dtsRollupPlugin = (
   tsconfigJSONPath: string,
-  typeVersions: PackageJSON['typeVersions']
+  typeVersions: ReturnType<typeof readTypesVersions>
 ): InputPluginOption => {
   const dtsState = createDtsState();
 

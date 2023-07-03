@@ -3,26 +3,25 @@ import {dirname, join} from 'node:path';
 
 import {createDistState} from './create_dist_state/create_dist_state';
 
-import {packageJSONs} from '~bundler/inputs/inputs_alias';
+import {packageJsons} from '~bundler/inputs/inputs_alias';
 
 const DIST_DIRNAME = 'dist';
 
 export const waitForDist = (packageName: string) => {
-  const packageJSONObject = packageJSONs.find(
-    ({packageJSONFile}) => packageJSONFile.name === packageName
+  const packageJsonObject = packageJsons.find(
+    ({packageJsonFile}) => packageJsonFile.name === packageName
   );
 
-  if (!packageJSONObject) {
-    throw Error('`packageJSONObject` is undefined');
+  if (!packageJsonObject) {
+    throw Error('`packageJsonObject` is undefined');
   }
 
-  const {packageJSONPath, packageJSONFile} = packageJSONObject;
-
-  const packagePath = dirname(packageJSONPath);
+  const {packageJsonPath, packageJsonFile} = packageJsonObject;
+  const packageJsonDirname = dirname(packageJsonPath);
 
   return new Promise((resolve) => {
-    const distDirname = join(packagePath, DIST_DIRNAME);
-    const distState = createDistState(packagePath, packageJSONFile);
+    const distDirname = join(packageJsonDirname, DIST_DIRNAME);
+    const distState = createDistState(packageJsonDirname, packageJsonFile);
 
     chokidar.watch(distDirname).on('add', (addedFile) => {
       distState.setAsCreated(addedFile);
