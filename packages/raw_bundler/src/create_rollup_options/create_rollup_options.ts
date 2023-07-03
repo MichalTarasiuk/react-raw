@@ -30,7 +30,7 @@ export const createRollupOptions = (
   jsonObject: JsonObject,
   {source, isProduction}: Options
 ) => {
-  const input = rewriteNames(source);
+  const input: RollupOptions['input'] = rewriteNames(source);
   const output: RollupOptions['output'] = supportedImportNames.map(
     (importName) => {
       const format = importNameToFormat(importName);
