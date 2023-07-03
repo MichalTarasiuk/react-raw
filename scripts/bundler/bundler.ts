@@ -30,8 +30,10 @@ const waitForDependencies = (dependencies: readonly string[]) => {
 };
 
 const bundler = async () => {
+  const entriesGraph = Object.entries(graph);
+
   await Promise.all(
-    Object.entries(graph).map(async ([packageJsonName, dependencies]) => {
+    entriesGraph.map(async ([packageJsonName, dependencies]) => {
       await waitForDependencies(dependencies);
 
       await runDev(packageJsonName);

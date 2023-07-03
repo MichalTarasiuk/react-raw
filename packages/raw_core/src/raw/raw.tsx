@@ -1,5 +1,5 @@
 /* eslint-disable functional/prefer-readonly-type */
-import {mapGetLazy, mapPutNewLazy} from '@react-raw/lib/utils';
+import {mapPutNewLazy} from '@react-raw/lib/utils';
 import htmlReactParser, {
   attributesToProps,
   domToReact,
@@ -20,7 +20,7 @@ const rawCacheMap = new Map<
 export const raw = (rawString: string, resolvers: Resolvers) => {
   const resolverValues = Object.values(resolvers);
 
-  const rawCacheValue = mapGetLazy(
+  const rawCacheValue = mapPutNewLazy(
     rawCacheMap,
     resolvers,
     () => new Map<string, ReturnType<typeof htmlReactParser>>()

@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 
 export const readJSONFile = (path: string) => {
-  const file = readFileSync(path).toString();
+  const fileContent = readFileSync(path).toString();
 
-  return JSON.parse(file);
+  return JSON.parse(fileContent);
 };
