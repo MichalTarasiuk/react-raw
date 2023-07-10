@@ -6,10 +6,6 @@
     "./source": {
       "default": "./src/src_alias.ts"
     },
-    "./composables": {
-      "import": "./dist/composables/composables.mjs",
-      "require": "./dist/composables/composables.cjs"
-    },
     "./node": {
       "import": "./dist/node/node.mjs",
       "require": "./dist/node/node.cjs"
@@ -23,9 +19,6 @@
     "*": {
       "source": [
         "./src/src_alias.ts"
-      ],
-      "composables": [
-        "./dist/composables/composables.d.ts"
       ],
       "node": [
         "./dist/node/node.d.ts"
