@@ -20,8 +20,6 @@ type RawResolverObject = {
   readonly rawResolver: RawResolver;
 };
 
-const DEFAULT_IS_RESOLVABLE = true;
-
 export const getResolverEntry = <ReactHTMLKey extends UnknownReactHTMLKey>(
   reactHTMLKey: ReactHTMLKey,
   {rawResolverName, rawResolver}: RawResolverObject
@@ -32,7 +30,7 @@ export const getResolverEntry = <ReactHTMLKey extends UnknownReactHTMLKey>(
     shouldResolve: (element) => {
       const isResolvable = rawResolverName
         ? element.attribs[RESOLVE_PROPERTY_NAME] === rawResolverName
-        : DEFAULT_IS_RESOLVABLE;
+        : true;
 
       return element.tagName === reactHTMLKey && isResolvable;
     },

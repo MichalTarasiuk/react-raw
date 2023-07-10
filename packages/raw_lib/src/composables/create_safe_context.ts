@@ -3,11 +3,12 @@ import {createContext, useContext} from 'react';
 import {uppercaseFirst} from '../utils/utils_alias';
 
 export const createSafeContext = <ContextValue>(name: string) => {
+  const contextName = uppercaseFirst(name);
+
   const initialContextValue = Symbol('initial-context-value');
   const isInitialContextValue = (value: unknown): value is symbol =>
     value === initialContextValue;
 
-  const contextName = uppercaseFirst(name);
   const context = createContext<ContextValue | symbol>(initialContextValue);
 
   const useSafeContext = () => {

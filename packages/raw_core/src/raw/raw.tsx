@@ -26,7 +26,7 @@ export const raw = (rawString: string, resolvers: Resolvers) => {
     () => new Map<string, ReturnType<typeof htmlReactParser>>()
   );
 
-  const reactJSXElement = mapPutNewLazy(rawCacheValue, rawString, (rawString) =>
+  return mapPutNewLazy(rawCacheValue, rawString, (rawString) =>
     htmlReactParser(rawString, {
       replace: (domNode: DOMNode) => {
         if (!isElement(domNode)) {
@@ -50,6 +50,4 @@ export const raw = (rawString: string, resolvers: Resolvers) => {
       },
     })
   );
-
-  return reactJSXElement;
 };

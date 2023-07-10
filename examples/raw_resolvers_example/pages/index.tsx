@@ -22,7 +22,7 @@ const buttonRawResolvers: RawResolvers = {
   ),
 };
 
-export function App() {
+function IndexPage() {
   const raw = useRaw();
 
   return (
@@ -44,3 +44,5 @@ export function App() {
     </main>
   );
 }
+
+export default IndexPage;

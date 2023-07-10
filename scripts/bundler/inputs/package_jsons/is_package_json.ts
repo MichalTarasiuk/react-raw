@@ -9,12 +9,8 @@ export type PackageJsonFile = {
   readonly devDependencies?: Record<string, string>;
 };
 
-const FALLBACK_HAS = true;
-
 const hasOptionalJsonObject = (jsonObject: JsonObject, property: string) =>
-  hasOwn(jsonObject, property)
-    ? isJSONObject(jsonObject[property])
-    : FALLBACK_HAS;
+  hasOwn(jsonObject, property) ? isJSONObject(jsonObject[property]) : true;
 
 export const isPackageJsonFile = (
   jsonObject: JsonObject

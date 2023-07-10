@@ -1,5 +1,6 @@
 const rewriteNamesObj: Record<string, string> = {
   '.': 'root',
+  '*': 'root',
 };
 
 export const rewriteNames = (record: Record<string, string>) => {

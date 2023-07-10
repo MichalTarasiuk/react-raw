@@ -1,9 +1,7 @@
 {
   "extends": [
+    "next/core-web-vitals",
     "./node_modules/@react-raw/linter/core.json",
     "./node_modules/@react-raw/linter/react.json"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
+  ]
 }

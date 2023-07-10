@@ -14,7 +14,7 @@
   },
   "typesVersions": {
     "*": {
-      ".": [
+      "*": [
         "./dist/root/root.d.ts"
       ],
       "next": [
