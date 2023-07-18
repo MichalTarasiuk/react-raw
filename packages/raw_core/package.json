@@ -4,12 +4,12 @@
   "license": "ISC",
   "exports": {
     ".": {
-      "import": "./dist/root/root.mjs",
-      "require": "./dist/root/root.cjs"
+      "import": "./dist/root/root.module.js",
+      "require": "./dist/root/root.js"
     },
     "./next": {
-      "import": "./dist/next/next.mjs",
-      "require": "./dist/next/next.cjs"
+      "import": "./dist/next/next.module.js",
+      "require": "./dist/next/next.js"
     }
   },
   "typesVersions": {

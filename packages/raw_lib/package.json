@@ -7,12 +7,12 @@
       "default": "./src/src_alias.ts"
     },
     "./node": {
-      "import": "./dist/node/node.mjs",
-      "require": "./dist/node/node.cjs"
+      "import": "./dist/node/node.module.js",
+      "require": "./dist/node/node.js"
     },
     "./utils": {
-      "import": "./dist/utils/utils.mjs",
-      "require": "./dist/utils/utils.cjs"
+      "import": "./dist/utils/utils.module.js",
+      "require": "./dist/utils/utils.js"
     }
   },
   "typesVersions": {
