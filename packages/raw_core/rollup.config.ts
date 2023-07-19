@@ -6,9 +6,10 @@ import type {RollupOptions} from 'rollup';
 
 const lazyRollupOptions = environment(({isProduction}) => {
   const rollupOptions: RollupOptions = createRollupOptions(packageJson, {
+    sourceDirectory: './src',
     source: {
-      '.': './src/src_alias.ts',
-      next: './src/next/next_alias.ts',
+      '.': './src_alias.ts',
+      next: './next/next_alias.ts',
     },
     isProduction,
   });

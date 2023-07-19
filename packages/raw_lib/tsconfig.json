@@ -1,13 +1,6 @@
 {
   "extends": "@react-raw/tsconfig/base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~components/*": ["src/components/*"],
-      "~composables/*": ["src/composables/*"],
-      "~node/*": ["src/node/*"],
-      "~utils/*": ["src/utils/*"]
-    },
     "jsx": "react-jsx",
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },

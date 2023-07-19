@@ -13,11 +13,21 @@ import {raw} from '~raw/raw';
 
 const moizeMergeObjects = moize(mergeObjects);
 
-export const useRaw = (hookRawResolvers: RawResolvers = {}) => {
+const initial = {
+  hookRawResolvers: {},
+  paramRawResolvers: {},
+};
+
+export const useRaw = (
+  hookRawResolvers: RawResolvers = initial.hookRawResolvers
+) => {
   const {resolvers} = useRawContext();
 
   return useCallback(
-    (rawString: string, paramRawResolvers: RawResolvers = {}) => {
+    (
+      rawString: string,
+      paramRawResolvers: RawResolvers = initial.paramRawResolvers
+    ) => {
       const rawResolvers = moizeMergeObjects(
         hookRawResolvers,
         paramRawResolvers

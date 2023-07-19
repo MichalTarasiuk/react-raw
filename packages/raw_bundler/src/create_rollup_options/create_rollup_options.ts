@@ -1,8 +1,10 @@
+import {mapObjectValues} from '@react-raw/lib/source';
 import commonJSRollupPlugin from '@rollup/plugin-commonjs';
 import nodeResolveRollupPlugin from '@rollup/plugin-node-resolve';
 import terserRollupPlugin from '@rollup/plugin-terser';
 import typescriptRollupPlugin from '@rollup/plugin-typescript';
 import {getTsconfig} from 'get-tsconfig';
+import {join} from 'path';
 import peerDeepsExternalRollupPlugin from 'rollup-plugin-peer-deps-external';
 
 import {
@@ -22,15 +24,18 @@ import type {InputPluginOption, RollupOptions} from 'rollup';
 import type {JsonObject} from 'type-fest';
 
 type Options = {
+  readonly sourceDirectory: string;
   readonly source: Record<string, string>;
   readonly isProduction: boolean;
 };
 
 export const createRollupOptions = (
   jsonObject: JsonObject,
-  {source, isProduction}: Options
+  {sourceDirectory, source, isProduction}: Options
 ) => {
-  const input: RollupOptions['input'] = rewriteNames(source);
+  const input: RollupOptions['input'] = rewriteNames(
+    mapObjectValues(source, (sourceValue) => join(sourceDirectory, sourceValue))
+  );
   const output: RollupOptions['output'] = supportedImportNames.map(
     (importName) => {
       const format = importNameToFormat(importName);
@@ -61,7 +66,11 @@ export const createRollupOptions = (
         exclude: [...(tsconfig?.exclude ?? []), 'rollup.config.ts'],
         outputToFilesystem: false,
       }),
-      dtsRollupPlugin(DEFAULT_TSCONFIG_JSON_PATH, typesVersions),
+      dtsRollupPlugin({
+        sourceDirectory,
+        typesVersions,
+        tsconfigJSONPath: DEFAULT_TSCONFIG_JSON_PATH,
+      }),
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       peerDeepsExternalRollupPlugin() as unknown as InputPluginOption,
       nodeResolveRollupPlugin({

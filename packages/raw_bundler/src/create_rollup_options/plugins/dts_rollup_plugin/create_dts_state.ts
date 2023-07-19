@@ -1,40 +1,50 @@
-import {relativeToAbsolute} from '@react-raw/lib/source';
-import {dirname} from 'node:path';
+import {isDeepKeyof, isObject} from '@react-raw/lib/source';
+import getDependencyTree from 'dependency-tree';
+import {resolve} from 'node:path';
 
 import type {DtsOptions} from './generate_dts_bundle';
 
-type Input = string;
+type Path = string;
 
 type DtsItem = {
   readonly dtsOptions: DtsOptions;
-  readonly test: (absoluteInput: string) => boolean;
+  readonly test: (absoluteInput: Path) => boolean;
 };
 
-export const createDtsState = () => {
-  const dtsState = new Map<Input, DtsItem>();
+export const createDtsState = (sourceDirectoryPath: Path) => {
+  const dtsState = new Map<Path, DtsItem>();
 
-  const get = (changedFile: string) => {
-    return [...dtsState.values()].find((dtsItem) => dtsItem.test(changedFile));
+  const get = (changedFilePath: Path) => {
+    return [...dtsState.values()].filter((dtsItem) =>
+      dtsItem.test(changedFilePath)
+    );
   };
 
   const set = (dtsOptions: DtsOptions) => {
-    const dtsItem: DtsItem = {
+    const filename = resolve(dtsOptions.input);
+    const directory = resolve(sourceDirectoryPath);
+
+    dtsState.set(dtsOptions.input, {
       dtsOptions,
-      test: (changedFile) => {
-        const absoluteInput = relativeToAbsolute(dtsOptions.input);
-        const absoluteInputDirname = dirname(absoluteInput);
+      test: (changedFilePath) => {
+        const dependencyTree = getDependencyTree({
+          filename,
+          directory,
+          filter: (path) => !path.includes('node_modules'),
+        });
 
-        return changedFile.startsWith(absoluteInputDirname);
+        return (
+          isObject(dependencyTree) &&
+          isDeepKeyof(dependencyTree, changedFilePath)
+        );
       },
-    };
-
-    dtsState.set(dtsOptions.input, dtsItem);
+    });
   };
 
   return {
     get,
     set,
-    has: (input: Input) => dtsState.has(input),
-    delete: (input: Input) => dtsState.delete(input),
+    has: (inputPath: Path) => dtsState.has(inputPath),
+    delete: (inputPath: Path) => dtsState.delete(inputPath),
   };
 };

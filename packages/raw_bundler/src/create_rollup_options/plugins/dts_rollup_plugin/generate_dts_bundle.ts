@@ -11,6 +11,10 @@ export const generateDtsBundle = (
   tsconfigJSONPath: string,
   dtsOptionsArray: readonly DtsOptions[]
 ) => {
+  if (!dtsOptionsArray.length) {
+    return;
+  }
+
   const inputs = dtsOptionsArray.map(({input}) => input);
   const outputs = dtsOptionsArray.map(({output}) => output);
 
@@ -35,12 +39,12 @@ export const generateDtsBundle = (
 
     if (output) {
       const outputDirname = dirname(output);
-      const outputDirnameExist = existsSync(outputDirname);
 
-      !outputDirnameExist &&
+      if (!existsSync(outputDirname)) {
         mkdirSync(outputDirname, {
           recursive: true,
         });
+      }
 
       writeFileSync(output, code);
     }

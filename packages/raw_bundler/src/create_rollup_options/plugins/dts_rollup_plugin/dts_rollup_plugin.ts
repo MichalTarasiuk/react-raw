@@ -7,11 +7,18 @@ import {getDtsOptionsArray} from './get_dts_options_array/get_dts_options_array'
 import type {readTypesVersions} from '../../helpers/helpers_alias';
 import type {InputPluginOption} from 'rollup';
 
-export const dtsRollupPlugin = (
-  tsconfigJSONPath: string,
-  typeVersions: ReturnType<typeof readTypesVersions>
-): InputPluginOption => {
-  const dtsState = createDtsState();
+type Options = {
+  readonly sourceDirectory: string;
+  readonly typesVersions: ReturnType<typeof readTypesVersions>;
+  readonly tsconfigJSONPath: string;
+};
+
+export const dtsRollupPlugin = ({
+  sourceDirectory,
+  tsconfigJSONPath,
+  typesVersions,
+}: Options): InputPluginOption => {
+  const dtsState = createDtsState(sourceDirectory);
 
   return {
     name: dtsRollupPlugin.name,
@@ -20,21 +27,21 @@ export const dtsRollupPlugin = (
         return;
       }
 
-      const dtsOptionsArray = getDtsOptionsArray(input, typeVersions);
+      const dtsOptionsArray = getDtsOptionsArray(input, typesVersions);
       const newDtsOptionsArray = dtsOptionsArray.filter(
         (dtsOptions) => !dtsState.has(dtsOptions.input)
       );
 
       newDtsOptionsArray.forEach((dtsOptions) => dtsState.set(dtsOptions));
 
-      generateDtsBundle(tsconfigJSONPath, dtsOptionsArray);
+      generateDtsBundle(tsconfigJSONPath, newDtsOptionsArray);
     },
-    watchChange: (changedFile: string) => {
-      const {dtsOptions} = dtsState.get(changedFile) ?? {};
+    watchChange: (changedFilePath: string) => {
+      const dtsItems = dtsState.get(changedFilePath);
 
-      if (dtsOptions) {
-        dtsState.delete(dtsOptions.input);
-      }
+      dtsItems.forEach((dtsItem) => {
+        dtsState.delete(dtsItem.dtsOptions.input);
+      });
     },
   };
 };
