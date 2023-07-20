@@ -1,6 +1,6 @@
 {
   "references": [
-    {"path": "examples/raw_resolvers_example"},
+    {"path": "apps/raw_resolvers_example"},
     {"path": "packages/raw_bundler"},
     {"path": "packages/raw_lib"},
     {"path": "packages/raw_core"}
