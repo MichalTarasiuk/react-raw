@@ -24,8 +24,6 @@ export const getResolverEntry = <ReactHTMLKey extends UnknownReactHTMLKey>(
   reactHTMLKey: ReactHTMLKey,
   {rawResolverName, rawResolver}: RawResolverObject
 ) => {
-  const resolverName = getResolverName(reactHTMLKey, rawResolverName);
-
   const resolverValue: ValueOf<Resolvers> = {
     shouldResolve: (element) => {
       const isResolvable = rawResolverName
@@ -37,5 +35,8 @@ export const getResolverEntry = <ReactHTMLKey extends UnknownReactHTMLKey>(
     resolve: rawResolver,
   };
 
-  return [resolverName, resolverValue] as const;
+  return [
+    getResolverName(reactHTMLKey, rawResolverName),
+    resolverValue,
+  ] as const;
 };

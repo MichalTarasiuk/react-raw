@@ -12,16 +12,16 @@ export const getResolverEntries = <ReactHtmlKey extends UnknownReactHTMLKey>(
   reactHTMLKey: ReactHtmlKey,
   rawResolverObject: RawResolverObject<ReactHtmlKey>
 ) => {
-  const rawResolverEntries = Object.entries(rawResolverObject);
+  return Object.entries(rawResolverObject).map(
+    ([rawResolverName, rawResolverImpl]) => {
+      const rawResolver: RawResolver<ReactHtmlKey> = (children, props) => {
+        return rawResolverImpl(
+          children,
+          deleteAttribute(props, RESOLVE_PROPERTY_NAME)
+        );
+      };
 
-  return rawResolverEntries.map(([rawResolverName, rawResolverImpl]) => {
-    const rawResolver: RawResolver<ReactHtmlKey> = (children, props) => {
-      return rawResolverImpl(
-        children,
-        deleteAttribute(props, RESOLVE_PROPERTY_NAME)
-      );
-    };
-
-    return getResolverEntry(reactHTMLKey, {rawResolverName, rawResolver});
-  });
+      return getResolverEntry(reactHTMLKey, {rawResolverName, rawResolver});
+    }
+  );
 };

@@ -39,9 +39,7 @@ export const dtsRollupPlugin = ({
     watchChange: (changedFilePath: string) => {
       const dtsItems = dtsState.get(changedFilePath);
 
-      dtsItems.forEach((dtsItem) => {
-        dtsState.delete(dtsItem.dtsOptions.input);
-      });
+      dtsItems.forEach((dtsItem) => dtsState.delete(dtsItem.dtsOptions.input));
     },
   };
 };
