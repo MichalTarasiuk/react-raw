@@ -5,7 +5,7 @@
   "license": "ISC",
   "scripts": {
     "prepare": "husky install && chmod ug+x .husky/*",
-    "dev": "pnpm run clean && ts-node -r tsconfig-paths/register scripts/bundler/bundler.ts",
+    "dev": "pnpm run clean && ts-node --project tsconfig.node.json --require tsconfig-paths/register scripts/bundler/bundler.ts",
     "build": "pnpm run clean && turbo run build",
     "clean": "pnpm --parallel --no-bail run clean",
     "format": "turbo run format --",

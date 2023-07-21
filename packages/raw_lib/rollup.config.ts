@@ -4,8 +4,8 @@ import packageJson from './package.json';
 
 import type {RollupOptions} from 'rollup';
 
-const lazyRollupOptions = environment(({isProduction}) => {
-  const rollupOptions: RollupOptions = createRollupOptions(packageJson, {
+const lazyRollupOptions = environment(({isProduction}): RollupOptions => {
+  return createRollupOptions(packageJson, {
     sourceDirectory: './src',
     source: {
       node: './node/node_alias.ts',
@@ -13,8 +13,6 @@ const lazyRollupOptions = environment(({isProduction}) => {
     },
     isProduction,
   });
-
-  return rollupOptions;
 });
 
 export default lazyRollupOptions;

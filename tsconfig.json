@@ -4,19 +4,5 @@
     {"path": "packages/raw_bundler"},
     {"path": "packages/raw_lib"},
     {"path": "packages/raw_core"}
-  ],
-  "ts-node": {
-    "files": true
-  },
-  "compilerOptions": {
-    "baseUrl": ".",
-    "module": "CommonJS",
-    "target": "ES2022",
-    "moduleResolution": "nodenext",
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-      "~bundler/*": ["scripts/bundler/*"]
-    }
-  },
-  "include": ["scripts/**/*.ts"]
+  ]
 }

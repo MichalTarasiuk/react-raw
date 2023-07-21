@@ -6,19 +6,12 @@
     ".": {
       "import": "./dist/root/root.module.js",
       "require": "./dist/root/root.js"
-    },
-    "./next": {
-      "import": "./dist/next/next.module.js",
-      "require": "./dist/next/next.js"
     }
   },
   "typesVersions": {
     "*": {
       "*": [
         "./dist/root/root.d.ts"
-      ],
-      "next": [
-        "./dist/next/next.d.ts"
       ]
     }
   },
