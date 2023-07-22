@@ -13,10 +13,10 @@
   "include": ["**/*.ts", "**/*.tsx", "package.json"],
   "references": [
     {
-      "path": "../raw_bundler"
+      "path": "../raw_bundler/tsconfig.json"
     },
     {
-      "path": "../raw_lib"
+      "path": "../raw_lib/tsconfig.json"
     }
   ]
 }

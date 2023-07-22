@@ -7,7 +7,7 @@
   "include": ["**/*.ts", "**/*.tsx", "package.json"],
   "references": [
     {
-      "path": "../raw_bundler"
+      "path": "../raw_bundler/tsconfig.json"
     }
   ]
 }
