@@ -4,7 +4,7 @@ import {join} from 'node:path';
 import {getDeclarationFiles} from './get_declaration_files';
 import {getExportFiles} from './get_export_files/get_export_files';
 
-import type {PackageJsonFile} from '~bundler/inputs/inputs_alias';
+import type {PackageJsonFile} from '../../../inputs/inputs_alias';
 
 export const createDistState = (
   packagePath: string,

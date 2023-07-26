@@ -1,6 +1,6 @@
 import {readTypesVersions} from '@react-raw/bundler';
 
-import type {PackageJsonFile} from '~bundler/inputs/inputs_alias';
+import type {PackageJsonFile} from '../../../inputs/inputs_alias';
 
 const isDeclarationFile = (file: string) => file.endsWith('.d.ts');
 

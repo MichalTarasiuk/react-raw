@@ -1,9 +1,9 @@
 import * as chokidar from 'chokidar';
 import {dirname, join} from 'node:path';
 
-import {createDistState} from './create_dist_state/create_dist_state';
+import {packageJsons} from '../../inputs/inputs_alias';
 
-import {packageJsons} from '~bundler/inputs/inputs_alias';
+import {createDistState} from './create_dist_state/create_dist_state';
 
 const DIST_DIRNAME = 'dist';
 

@@ -7,10 +7,7 @@
     "module": "CommonJS",
     "target": "ES2022",
     "moduleResolution": "nodenext",
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-      "~bundler/*": ["scripts/bundler/*"]
-    }
+    "allowSyntheticDefaultImports": true
   },
   "include": ["scripts/**/*.ts"]
 }

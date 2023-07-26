@@ -19,6 +19,6 @@ export const getRollupReactRawDependencies = (
       (packageJsonFile) => packageJsonFile.name === dependency
     );
 
-    return hasDevCommand(packageJsonFile);
+    return packageJsonFile && hasDevCommand(packageJsonFile);
   });
 };
