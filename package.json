@@ -11,7 +11,8 @@
     "format": "turbo run format --",
     "typecheck": "turbo run typecheck --",
     "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix"
+    "lint:fix": "turbo run lint:fix",
+    "postinstall": "stale-dep -u"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
